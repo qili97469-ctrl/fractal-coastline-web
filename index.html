@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0b3047">
+  <meta name="description" content="通过真实的渤海湾海岸线多尺度测量实验，理解海岸线悖论、尺度效应、幂函数和分形维数。">
+  <meta property="og:title" content="量不完的海岸线｜从尺度效应认识分形">
+  <meta property="og:description" content="通过真实的渤海湾海岸线多尺度测量实验，理解海岸线悖论、尺度效应、幂函数和分形维数。">
+  <meta property="og:type" content="website">
+  <title>量不完的海岸线｜从尺度效应认识分形</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b3047'/%3E%3Cpath d='M8 39c8-13 14 8 23-5 8-12 14 5 25-8v20H8z' fill='%235b9fb1'/%3E%3Cpath d='M8 46c10-8 16 7 26-2 9-8 15 2 22-4v16H8z' fill='%23d9c49b'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="site-header" data-header>
+    <div class="nav-shell">
+      <a class="brand" href="#hero" aria-label="返回首页">
+        <span class="brand-mark" aria-hidden="true">≈</span>
+        <span>量不完的海岸线</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="打开导航菜单">
+        <span></span><span></span><span></span>
+      </button>
+      <nav id="primary-nav" class="primary-nav" aria-label="主要导航">
+        <a href="#hero">首页</a>
+        <a href="#experiment">实验</a>
+        <a href="#data">数据</a>
+        <a href="#model">模型</a>
+        <a href="#validation">检验</a>
+        <a href="#applications">应用</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section id="hero" class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow">一场从海岸线出发的数学探索</p>
+        <h1 id="hero-title">量不完的<br><em>海岸线</em></h1>
+        <p class="hero-subtitle">为什么尺子越小，海岸线反而越长？</p>
+        <p class="hero-lede">一条海岸线，到底有多长？<br>答案可能取决于你手里的尺子。</p>
+        <a class="button button-primary" href="#scale-effect">开始探索 <span aria-hidden="true">↓</span></a>
+        <p class="science-figure-label">科普示意｜非本研究实测数据</p>
+      </div>
+      <figure class="hero-visual" aria-labelledby="hero-visual-caption">
+        <svg viewBox="0 0 620 500" role="img" aria-label="一条由粗到细的抽象海岸线示意图">
+          <defs>
+            <linearGradient id="sea-gradient" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#0b3047"/>
+              <stop offset="1" stop-color="#174e67"/>
+            </linearGradient>
+            <pattern id="contour-lines" width="68" height="68" patternUnits="userSpaceOnUse">
+              <path d="M0 16C16 4 31 26 48 13S75 12 85 22M-9 50c16-12 31 10 48-3s27-1 37 9" fill="none" stroke="#8bc4c9" stroke-opacity=".17" stroke-width="2"/>
+            </pattern>
+          </defs>
+          <rect width="620" height="500" rx="22" fill="url(#sea-gradient)"/>
+          <rect width="620" height="500" rx="22" fill="url(#contour-lines)"/>
+          <path d="M0 94C71 132 104 79 160 113c65 39 85 3 138 34 56 33 63 86 126 82 76-4 92-83 196-49v320H0Z" fill="#d9c49b"/>
+          <path d="M0 94C71 132 104 79 160 113c65 39 85 3 138 34 56 33 63 86 126 82 76-4 92-83 196-49" fill="none" stroke="#f8f2e6" stroke-width="5"/>
+          <path d="M0 106c70 38 104-13 160 21 65 39 85 3 138 34 56 33 63 86 126 82 76-4 92-83 196-49" fill="none" stroke="#75bec3" stroke-width="2" stroke-dasharray="3 12"/>
+          <g class="hero-ruler" transform="translate(380 338) rotate(-12)">
+            <rect width="184" height="36" rx="7" fill="#f4e6bf" stroke="#0b3047" stroke-width="3"/>
+            <path d="M18 0v19M38 0v12M58 0v19M78 0v12M98 0v19M118 0v12M138 0v19M158 0v12" stroke="#0b3047" stroke-width="3"/>
+            <text x="18" y="31" fill="#0b3047" font-size="11" font-family="sans-serif">尺度刻度</text>
+          </g>
+          <circle cx="464" cy="274" r="8" fill="#f4e6bf"/>
+          <circle cx="430" cy="295" r="4" fill="#f4e6bf" opacity=".7"/>
+        </svg>
+        <figcaption id="hero-visual-caption">把一条复杂曲线放进不同尺度的观察框里，答案可能会改变。</figcaption>
+      </figure>
+    </section>
+
+    <section id="scale-effect" class="section section-light" aria-labelledby="scale-title">
+      <div class="section-shell">
+        <div class="section-intro reveal">
+          <p class="section-number">02 / 09</p>
+          <h2 id="scale-title">一条海岸线，不应该只有一个长度吗？</h2>
+          <p class="section-summary">同一条曲线，为什么换一把尺子，答案就变了？</p>
+        </div>
+        <div class="scale-layout">
+          <div class="scale-explanation reveal">
+            <p>测量规则整齐的物体，通常会得到一个稳定的数值。但海岸线有许多大小不同的弯曲。测量时使用的基本单位大小，就是这里所说的<strong>尺度</strong>。</p>
+            <p>当尺度改变，能够被捕捉到的边界细节也会改变。这种“测量结果随尺度变化”的现象，称为<strong>尺度效应</strong>。</p>
+            <aside class="science-note" aria-label="分形小知识">
+              <span class="note-label">分形小知识</span>
+              <p>尺度可以理解为我们观察或测量对象时所使用的基本单位大小。</p>
+            </aside>
+          </div>
+          <div class="ruler-compare reveal" aria-label="大尺子和小尺子的静态对比示意">
+            <div class="ruler-card ruler-large">
+              <div class="ruler-heading"><span>大尺子</span><span class="ruler-size">尺度较大</span></div>
+              <svg viewBox="0 0 420 150" role="img" aria-label="大尺子跨过曲线细节">
+                <path d="M18 105C79 42 104 126 160 72s70 53 121 5 70 25 121-39" fill="none" stroke="#7daeb5" stroke-width="5"/>
+                <path d="M18 105L121 93L222 80L323 65L402 48" fill="none" stroke="#f5e8c8" stroke-width="4" stroke-dasharray="7 7"/>
+                <circle cx="18" cy="105" r="5" fill="#f5e8c8"/><circle cx="121" cy="93" r="5" fill="#f5e8c8"/><circle cx="222" cy="80" r="5" fill="#f5e8c8"/><circle cx="323" cy="65" r="5" fill="#f5e8c8"/><circle cx="402" cy="48" r="5" fill="#f5e8c8"/>
+              </svg>
+              <p>跨过许多细小弯曲，路径更像一条折线。</p>
+            </div>
+            <div class="ruler-card ruler-small">
+              <div class="ruler-heading"><span>小尺子</span><span class="ruler-size">尺度较小</span></div>
+              <svg viewBox="0 0 420 150" role="img" aria-label="小尺子捕捉更多曲线细节">
+                <path d="M18 105C79 42 104 126 160 72s70 53 121 5 70 25 121-39" fill="none" stroke="#7daeb5" stroke-width="5"/>
+                <path d="M18 105L37 84L57 59L79 46L99 61L122 93L144 96L160 72L184 52L209 62L233 84L257 77L281 62L306 38L328 38L351 56L373 52L402 48" fill="none" stroke="#e6c47c" stroke-width="3"/>
+                <g fill="#e6c47c"><circle cx="18" cy="105" r="4"/><circle cx="37" cy="84" r="4"/><circle cx="57" cy="59" r="4"/><circle cx="79" cy="46" r="4"/><circle cx="99" cy="61" r="4"/><circle cx="122" cy="93" r="4"/><circle cx="144" cy="96" r="4"/><circle cx="160" cy="72" r="4"/><circle cx="184" cy="52" r="4"/><circle cx="209" cy="62" r="4"/><circle cx="233" cy="84" r="4"/><circle cx="257" cy="77" r="4"/><circle cx="281" cy="62" r="4"/><circle cx="306" cy="38" r="4"/><circle cx="328" cy="38" r="4"/><circle cx="351" cy="56" r="4"/><circle cx="373" cy="52" r="4"/><circle cx="402" cy="48" r="4"/></g>
+              </svg>
+              <p>捕捉更多边界细节，折线更贴近原曲线。</p>
+            </div>
+          </div>
+        </div>
+        <div class="coastline-demo reveal" data-coastline-demo>
+          <div class="demo-heading">
+            <span class="science-figure-label">科普模拟｜非渤海湾实测数据</span>
+            <h3>你来量一量海岸线</h3>
+            <p class="demo-subtitle">拖动“尺子大小”，看看同一条复杂边界的测量结果怎样变化。</p>
+            <p class="demo-notice">这里的曲线和数值只用于帮助理解尺度效应，不代表本研究实际岸线和实际长度。</p>
+          </div>
+          <div class="demo-layout">
+            <div class="demo-svg-wrap">
+              <svg id="coastline-demo-svg" viewBox="0 0 1000 520" role="img" aria-labelledby="coastline-demo-title coastline-demo-desc">
+                <title id="coastline-demo-title">不同尺子大小测量复杂边界的科普模拟</title>
+                <desc id="coastline-demo-desc">尺子变小时，采样点增加，测量折线更贴近固定的复杂边界。</desc>
+                <rect class="demo-ocean" x="0" y="0" width="1000" height="520"></rect>
+                <path class="demo-land" d="M0 0H1000V220C930 330 900 285 840 275S750 180 690 225S600 350 530 285S430 175 365 245S270 330 205 270S110 170 40 270H0Z"></path>
+                <path id="coastline-reference-path" class="demo-reference-path" d="M40 270C110 170 140 315 205 270S300 185 365 245S465 330 530 285S625 175 690 225S780 330 840 275S930 330 960 220" fill="none"></path>
+                <polyline id="coastline-measurement-line" class="demo-measurement-line" points=""></polyline>
+                <g id="coastline-measurement-points" class="demo-measurement-points"></g>
+                <g id="coastline-ruler" class="demo-ruler" aria-hidden="true"><line x1="-42" y1="0" x2="42" y2="0"></line><line x1="-42" y1="-8" x2="-42" y2="8"></line><line x1="-21" y1="-5" x2="-21" y2="5"></line><line x1="0" y1="-8" x2="0" y2="8"></line><line x1="21" y1="-5" x2="21" y2="5"></line><line x1="42" y1="-8" x2="42" y2="8"></line></g>
+              </svg>
+            </div>
+            <div class="demo-controls">
+              <label class="demo-range-label" for="coastline-scale-range">模拟尺子等级：<output id="coastline-scale-output" for="coastline-scale-range">5</output></label>
+              <input id="coastline-scale-range" type="range" min="1" max="8" step="1" value="5">
+              <div class="demo-range-ends" aria-hidden="true"><span>1｜细</span><span>8｜粗</span></div>
+              <div class="demo-preset-buttons" role="group" aria-label="预设模拟尺子等级">
+                <button type="button" class="demo-preset" data-demo-level="8">大尺子</button>
+                <button type="button" class="demo-preset" data-demo-level="5">中等尺子</button>
+                <button type="button" class="demo-preset" data-demo-level="2">小尺子</button>
+                <button type="button" class="demo-preset" data-demo-level="1">最小尺子</button>
+              </div>
+              <div class="demo-secondary-actions"><button type="button" class="button button-secondary demo-reset">重置</button><label class="demo-toggle"><input type="checkbox" class="demo-reference-toggle" checked> 显示完整边界</label></div>
+            </div>
+          </div>
+          <div class="demo-stats" aria-label="科普模拟实时结果"><div><span>当前尺子</span><strong id="coastline-level-stat">中等</strong></div><div><span>测量点</span><strong id="coastline-points-stat">—</strong></div><div><span>模拟长度</span><strong id="coastline-length-stat" aria-live="polite">—</strong></div></div>
+          <p class="demo-explanation" id="coastline-explanation">尺子变小后，测量开始捕捉更多边界细节。</p>
+          <p class="demo-summary">当尺子变小时，测量折线能够捕捉更多细节，得到的模拟长度通常会增加。模拟单位仅用于比较不同尺子设置之间的变化。</p>
+          <div class="demo-next-step"><p>那么，在真实海岸线上，这种现象是否也会出现？</p><a class="button button-primary" href="#experiment">看看我们的真实实验</a></div>
+          <noscript><p class="science-note">启用JavaScript后可体验交互式尺度实验。</p></noscript>
+        </div>
+      </div>
+    </section>
+
+    <section id="experiment" class="section section-sand" aria-labelledby="experiment-title">
+      <div class="section-shell">
+        <div class="section-intro reveal">
+          <p class="section-number">03 / 09</p>
+          <h2 id="experiment-title">我们真的去量了一条海岸线</h2>
+          <p class="section-summary">从真实对象出发，再把一个地理问题变成可以测量、比较和检验的问题。</p>
+        </div>
+        <div class="study-region reveal">
+          <div class="study-region-copy"><p class="subsection-kicker">03A 研究区在哪里？</p><h3>我们的研究对象来自哪里？</h3><p>研究使用渤海湾相关的Sentinel-2真彩色合成影像，并从中提取自然岸线和人工岸线对象。</p></div>
+          <figure class="research-figure"><img src="assets/images/research/bohai/bohai-s2-rgb-2023-web.webp" alt="渤海湾Sentinel-2真彩色合成影像网页展示副本" loading="lazy"><figcaption><span class="research-figure-label">本研究影像｜Sentinel-2真彩色合成影像，2023年5月1日至10月31日</span></figcaption></figure>
+        </div>
+        <div class="coast-study reveal"><div class="subsection-heading"><p class="subsection-kicker">03B 具体研究了哪类岸线？</p><h3>自然岸线与人工岸线</h3></div><div class="coast-figure-grid"><figure class="research-figure"><img src="assets/images/research/bohai/natural-coast-web.webp" alt="渤海湾近似自然岸线研究图" loading="lazy"><figcaption><span class="research-figure-label">本研究对象｜自然岸线</span></figcaption></figure><figure class="research-figure"><img src="assets/images/research/bohai/artificial-coast-web.webp" alt="渤海湾人工岸线研究图" loading="lazy"><figcaption><span class="research-figure-label">本研究对象｜人工岸线</span></figcaption></figure></div></div>
+        <div class="cauliflower-study reveal"><div class="subsection-heading"><p class="subsection-kicker">03C 为什么还量一颗花椰菜？</p><h3>从海岸线走向复杂边界</h3><p>为了判断这种尺度效应是否只出现在海岸线，研究又选择了生活中容易获得的花椰菜，将其外轮廓数字化后进行相同的多尺度测量。</p></div><div class="cauliflower-figure-grid"><figure class="research-figure"><img src="assets/images/research/cauliflower/cauliflower-calibration.jpg" alt="带尺度参照点的花椰菜测量与校准图" loading="lazy"><figcaption><span class="research-figure-label">本研究实验｜花椰菜测量与尺度参照图</span></figcaption></figure><div class="figure-arrow" aria-hidden="true">→</div><figure class="research-figure"><img src="assets/images/research/cauliflower/cauliflower-contour-overlay.jpg" alt="花椰菜外轮廓叠加处理结果" loading="lazy"><figcaption><span class="research-figure-label">本研究数据处理｜花椰菜外轮廓叠加结果</span></figcaption></figure></div></div>
+        <div class="method-grid reveal"><article class="method-card"><p class="subsection-kicker">03D 我们怎么测？</p><h3>圆规步测法</h3><div class="process-flow"><span>固定步长</span><i>↓</i><span>沿边界移动</span><i>↓</i><span>记录步数</span><i>↓</i><strong>长度 = 步数 × 步长</strong></div></article><article class="method-card"><h3>ArcGIS数字化测量</h3><p>用不同量测尺度对同一岸线进行数字化长度测量。在不同尺度下重复测量，以比较尺度变化对长度结果的影响。</p><span class="method-meta">本研究结果 · 方法需明确标注</span></article></div>
+        <div class="chart-card reveal"><div class="chart-card-heading"><span class="placeholder-kicker">本研究结果｜数据来源：最终研究报告</span><h3>花椰菜轮廓在不同量测尺度下的长度变化</h3><p>这是花椰菜二维外轮廓的最终平均结果，单位为毫米。</p></div><div class="chart-wrap"><canvas id="cauliflowerChart" aria-label="花椰菜轮廓在不同量测尺度下的长度变化折线图"></canvas></div><p class="chart-conclusion">随着量测尺度减小，花椰菜轮廓的测得长度也总体增加。</p></div>
+      </div>
+    </section>
+
+    <section id="data" class="section section-deep" aria-labelledby="data-title">
+      <div class="section-shell">
+        <div class="section-intro section-intro-light reveal"><p class="section-number">04 / 09</p><h2 id="data-title">尺子真的越小，测得越长吗？</h2><p class="section-summary">先看真实测量结果，再讨论它可能遵循的数学规律。</p></div>
+        <div class="research-note research-note-dark reveal"><span class="note-label">本研究结果</span><div class="data-highlight"><div><span class="metric-label">2000 m 量测尺度</span><strong>64.557 <small>km</small></strong></div><div class="metric-arrow" aria-hidden="true">→</div><div><span class="metric-label">50 m 量测尺度</span><strong>126.683 <small>km</small></strong></div></div><p>在本研究所选岸段和测量范围内，随着量测尺度减小，测得长度总体增加。</p></div>
+        <div class="chart-card chart-card-dark reveal"><div class="chart-card-heading"><div><span class="placeholder-kicker">本研究结果｜数据来源：最终研究报告</span><h3>ArcGIS：不同量测尺度下的岸线长度</h3><p>横轴按“大尺度 → 小尺度”排列，便于观察尺度减小时长度的总体变化。</p></div></div><div class="chart-wrap"><canvas id="arcgisChart" aria-label="ArcGIS不同量测尺度下自然岸线和人工岸线长度折线图"></canvas></div><p class="chart-conclusion">在本研究所选岸段和尺度范围内，随着量测尺度减小，自然岸线和人工岸线的测得长度总体增加。</p></div>
+        <div class="chart-card chart-card-dark reveal"><div class="chart-card-heading"><div><span class="placeholder-kicker">本研究结果｜数据来源：最终研究报告</span><h3>圆规步测：不同步长下的岸线测量长度</h3><p>圆规步测与ArcGIS属于不同测量流程，尺度单位和测量方式不同，两套结果应分别理解。</p></div></div><div class="chart-wrap"><canvas id="compassChart" aria-label="圆规步测不同步长下自然岸线和人工岸线长度折线图"></canvas></div><p class="chart-conclusion">圆规步长减小时，两类岸线的测得长度总体增加；这里的毫米步长不能直接换算成ArcGIS的米尺度进行横向比较。</p></div>
+      </div>
+    </section>
+
+    <section id="model" class="section section-light" aria-labelledby="model-title">
+      <div class="section-shell">
+        <div class="section-intro reveal"><p class="section-number">05 / 09</p><h2 id="model-title">这些数据，有没有数学规律？</h2><p class="section-summary">把“尺子大小”和“测得长度”写成变量，寻找一个能够描述变化的函数。</p></div>
+        <div class="equation-lead reveal"><p>设量测尺度为 <strong>x</strong>，测得长度为 <strong>y</strong>。</p><div class="equation-main">y = f(x)</div><p>研究目标，是寻找一种能描述这种变化的函数关系。</p></div>
+        <div class="model-cards">
+          <article class="model-card reveal"><span class="model-type">模型一</span><h3>一元一次函数</h3><p>用直线描述变化。</p><strong>R² = 0.86</strong></article>
+          <article class="model-card reveal"><span class="model-type">模型二</span><h3>反比例函数</h3><p>用倒数关系描述变化。</p><strong>R² = 0.75</strong></article>
+          <article class="model-card model-card-accent reveal"><span class="model-type">模型三</span><h3>幂函数</h3><p>在本研究数据和尺度范围内，拟合程度更高。</p><strong>R² = 0.99</strong></article>
+        </div>
+        <div class="model-flow reveal" aria-label="从候选模型到分形维数的流程"><span>候选模型</span><i>→</i><span>幂函数</span><i>→</i><span>双对数变换</span><i>→</i><span>斜率 n</span><i>→</i><strong>D = 1 − n</strong></div>
+<details class="formula-details reveal"><summary>展开了解数学原理</summary><div class="formula-content"><p>幂函数写作：</p><div class="formula">y = c x<sup>n</sup></div><p>本研究双对数图使用自然对数，关系变成：</p><div class="formula">ln y = n ln x + ln c</div><p>在双对数坐标中，数据若近似一条直线，就可以利用直线斜率 <strong>n</strong> 描述变化，再计算：</p><div class="formula">D = 1 − n</div></div></details>
+<div class="chart-card reveal"><div class="chart-card-heading"><span class="placeholder-kicker">本研究结果｜数据来源：最终研究报告</span><h3>双对数坐标下的自然岸线数据</h3><p>横轴为 ln(量测尺度 / m)，纵轴为 ln(岸线长度 / km)。图中拟合线直接使用最终报告关系式：Y = −0.1842X + 5.6267；正文中的D和R²仍以最终报告为准。</p></div><div class="chart-wrap"><canvas id="logChart" aria-label="以自然对数表示的自然岸线双对数散点和最终报告拟合线"></canvas></div><p class="chart-conclusion">双对数坐标下的数据近似呈线性关系，是本研究采用幂函数近似描述尺度效应的重要依据之一。</p></div>
+      </div>
+    </section>
+
+    <section id="fractal-dimension" class="section section-sand" aria-labelledby="dimension-title">
+      <div class="section-shell">
+        <div class="section-intro reveal"><p class="section-number">06 / 09</p><h2 id="dimension-title">不同边界，对尺度的响应一样吗？</h2><p class="section-summary">同一个对象换一种测量方法，D值也可能不同。因此，方法必须和数值一起被看见。</p></div>
+        <div class="dimension-grid">
+          <article class="dimension-card reveal"><span>自然岸线</span><small>圆规步测法</small><strong>D = 1.2312</strong></article>
+          <article class="dimension-card reveal"><span>自然岸线</span><small>ArcGIS</small><strong>D = 1.1842</strong></article>
+          <article class="dimension-card reveal"><span>人工岸线</span><small>圆规步测法</small><strong>D = 1.0691</strong></article>
+          <article class="dimension-card reveal"><span>人工岸线</span><small>ArcGIS</small><strong>D = 1.1147</strong></article>
+          <article class="dimension-card dimension-card-cauliflower reveal"><span>花椰菜轮廓</span><small>圆规步测法</small><strong>D = 1.0391</strong></article>
+        </div>
+        <div class="dimension-scale reveal"><span>D = 1</span><div class="scale-line"><i></i><i></i><i></i><i></i><i></i></div><span>D有所增加</span><p>在本研究语境中，D增加表示边界在不同尺度下表现出的长度变化更加明显；它不是绝对复杂度评分。</p></div>
+        <aside class="warning-note reveal"><span class="note-label">需要注意</span><p>这里的D是本研究特定对象、方法和尺度范围下的定量描述，不能直接视为所有海岸线的固定属性。</p></aside>
+        <div class="chart-card reveal"><div class="chart-card-heading"><span class="placeholder-kicker">本研究结果｜数据来源：最终研究报告</span><h3>分形维数D的对象与方法对照</h3><p>D值必须和对象、测量方法及尺度范围一起理解。</p></div><div class="chart-wrap"><canvas id="dimensionChart" aria-label="自然岸线、人工岸线和花椰菜轮廓的分形维数D横向点图"></canvas></div><p class="chart-conclusion">这些D值是特定对象、方法和尺度范围下的定量描述，不构成绝对复杂度排行榜。</p></div>
+      </div>
+    </section>
+
+    <section id="validation" class="section section-deep" aria-labelledby="validation-title">
+      <div class="section-shell">
+        <div class="section-intro section-intro-light reveal"><p class="section-number">07 / 09</p><h2 id="validation-title">R² = 0.99，就一定可靠吗？</h2><p class="section-summary">模型看起来很贴合数据，但真正的检验要看它能不能预测“没见过的数据”。</p></div>
+        <div class="validation-contrast reveal"><div class="validation-panel fit-panel"><span class="validation-kicker">拟合结果</span><strong>0.99</strong><p>R²很高，拟合看起来非常好。</p></div><div class="validation-divider" aria-hidden="true">≠</div><div class="validation-panel error-panel"><span class="validation-kicker">50 m留出预测误差</span><strong>12.48%</strong><p>但预测仍然可能出现明显误差。</p></div></div>
+        <div class="research-note research-note-dark reveal"><span class="note-label">留出验证</span><p>先故意不给模型看一部分数据，再让它预测这些没见过的数据。这样才能检验模型的预测能力，而不只是看它对已知数据的贴合程度。</p></div>
+        <div class="validation-grid">
+          <article class="validation-table-card reveal"><h3>小尺度方向</h3><table><thead><tr><th>尺度</th><th>预测 km</th><th>实测 km</th><th>误差</th></tr></thead><tbody><tr><td>75 m</td><td>131.1854</td><td>123.198</td><td>6.48%</td></tr><tr><td>50 m</td><td>142.4985</td><td>126.683</td><td>12.48%</td></tr></tbody></table></article>
+          <article class="validation-table-card reveal"><h3>反向检验</h3><p>用50—1000 m尺度数据建模，预测更大的尺度。</p><ul class="plain-list"><li><span>1500 m</span><strong>误差 4.91%</strong></li><li><span>2000 m</span><strong>误差 10.90%</strong></li></ul></article>
+        </div>
+        <aside class="science-note science-note-dark reveal"><span class="note-label">科学方法</span><p>拟合得好，不等于预测一定准。</p></aside>
+        <div class="chart-card chart-card-dark reveal"><div class="chart-card-heading"><span class="placeholder-kicker">本研究结果｜数据来源：最终研究报告</span><h3>留出验证：预测值与实测值</h3><p>小尺度验证显示预测与实测之间存在差异；大尺度反向验证只展示报告明确给出的误差，不反推缺失预测值。</p></div><div class="chart-wrap"><canvas id="validationChart" aria-label="75米和50米尺度预测值与实测值对照图"></canvas></div><p class="chart-conclusion">R²很高不等于预测一定准确，留出数据的预测误差仍需单独检查。</p></div>
+      </div>
+    </section>
+
+    <section id="scale-limit" class="section section-light" aria-labelledby="limit-title">
+      <div class="section-shell">
+        <div class="section-intro reveal"><p class="section-number">08 / 09</p><h2 id="limit-title">尺子是不是越小越好？</h2><p class="section-summary">更小的尺度带来更多细节，也带来分辨率、判断和成本的限制。</p></div>
+        <div class="supplement-grid">
+          <article class="supplement-card reveal"><h3>自然岸线</h3><div class="supplement-values"><span>10 m <strong>136.209 km</strong></span><i>→</i><span>5 m <strong>137.319 km</strong></span></div><p>增加 1.110 km</p></article>
+          <article class="supplement-card reveal"><h3>人工岸线</h3><div class="supplement-values"><span>10 m <strong>145.824 km</strong></span><i>→</i><span>5 m <strong>146.379 km</strong></span></div><p>增加 0.555 km</p></article>
+        </div>
+        <div class="balance-card reveal"><div><span>更小尺度</span><strong>更多细节</strong></div><div class="balance-line" aria-hidden="true"><i></i><i></i><i></i></div><div><span>现实限制</span><strong>更多成本与误差</strong></div></div>
+        <div class="constraint-grid reveal"><span>数据分辨率</span><span>岸线提取精度</span><span>人为判断</span><span>研究目的</span><span>工作成本</span></div>
+        <aside class="thinking-note reveal"><span class="note-label">进一步思考</span><p>现有研究数据不足以提出一个适用于所有海岸线的统一临界尺度。</p></aside>
+        <div class="chart-card reveal"><div class="chart-card-heading"><span class="placeholder-kicker">本研究结果｜数据来源：最终研究报告</span><h3>10 m与5 m补测</h3><p>补测用于观察更小尺度下的变化，不代表5 m就是所有海岸线的最佳尺度。</p></div><div class="chart-wrap"><canvas id="fineScaleChart" aria-label="自然岸线和人工岸线10米与5米补测长度连接图"></canvas></div><p class="chart-conclusion">尺度继续减小后，长度仍然增加，但本研究补测中的增加幅度已经减小。</p></div>
+      </div>
+    </section>
+
+    <section id="applications" class="section section-sand" aria-labelledby="applications-title">
+      <div class="section-shell">
+        <div class="section-intro reveal"><p class="section-number">09 / 09</p><h2 id="applications-title">海岸线只是开始</h2><p class="section-summary">分形提供了一种认识自然界复杂、不规则结构的方法。</p></div>
+        <div class="application-grid">
+          <article class="application-card reveal"><div class="application-icon shoreline" aria-hidden="true">〰</div><h3>海岸线</h3><p>同一条边界，在不同尺度下可能呈现不同的长度。</p></article>
+          <article class="application-card reveal"><div class="application-icon branches" aria-hidden="true">╱╲</div><h3>树枝 / 河网</h3><p>分叉和汇流形成层层展开的结构。</p></article>
+          <article class="application-card reveal"><div class="application-icon cauliflower" aria-hidden="true">✣</div><h3>花椰菜</h3><p>外轮廓也可以作为复杂边界来观察尺度响应。</p></article>
+          <article class="application-card reveal"><div class="application-icon cloud" aria-hidden="true">☁</div><h3>云 / 山脉</h3><p>自然界中的不规则形状，很难用单一的规则几何描述。</p></article>
+        </div>
+        <div class="science-note reveal"><span class="note-label">分形小知识</span><p>血管、肺部支气管和图像纹理也常被作为延伸讨论对象，但它们不属于本研究实际验证过的全部对象，也不意味着具有完全相同的分形维数。</p></div>
+        <div class="closing-question reveal"><p>一条海岸线，到底有多长？</p><blockquote>答案不仅与海岸线本身有关，也与你用什么尺度观察它有关。</blockquote><p class="closing-insight">科学不仅要寻找规律，还要不断检验规律在什么条件下成立。</p><a class="text-link" href="#hero">回到开头 ↑</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="section-shell footer-shell"><div><h2>量不完的海岸线</h2><p>——基于多尺度测量与函数建模的渤海海岸线尺度效应研究</p></div><div class="footer-meta"><p>网页内容中的研究数据与结论以最终研究报告为依据。</p><p>科普互动模块用于解释尺度效应，不代表真实测量结果。</p><p><a href="docs/研究报告20260929.docx">研究报告</a><span>·</span><a href="SOURCE_AUDIT.md">资料审计</a><span>·</span><a href="SITE_PLAN.md">网站计划</a></p></div></div></footer>
+  <script src="assets/vendor/chart.umd.min.js" defer></script>
+  <script src="assets/js/main.js" defer></script>
+  <script src="assets/js/charts.js" defer></script>
+  <script src="assets/js/coastline-demo.js" defer></script>
+</body>
+</html>
+

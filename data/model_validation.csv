@@ -1,0 +1,5 @@
+direction,scale_m,predicted_km,observed_km,relative_error_percent
+small_scale,75,131.1854,123.198,6.48
+small_scale,50,142.4985,126.683,12.48
+large_scale,1500,,71.609,4.91
+large_scale,2000,,64.557,10.90

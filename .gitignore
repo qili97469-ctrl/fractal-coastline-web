@@ -1,0 +1,47 @@
+# private project sources
+docs/
+
+# original research files
+*.tif
+*.tiff
+*.xlsx
+*.xls
+
+# raw research exports and private audit traces
+data/raw/
+RAW_DATA_AUDIT.md
+RAW_TO_FINAL_TRACE.md
+IMAGE_AUDIT.md
+CAULIFLOWER_ASSET_AUDIT.md
+DATA_AUDIT.md
+CHART_AUDIT.md
+
+# local source-format image copies; the web uses optimized derivatives
+assets/images/research/bohai/*.png
+assets/images/research/cauliflower/cauliflower-original.jpg
+assets/images/research/cauliflower/cauliflower-outline.jpg
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# editors
+.vscode/
+.idea/
+
+# environment / secrets
+.env
+.env.*
+*.key
+*.pem
+
+# system
+.DS_Store
+Thumbs.db
+
+# logs and temporary files
+*.log
+*.tmp
+*.bak
